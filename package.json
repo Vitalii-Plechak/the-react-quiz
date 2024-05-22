@@ -1,0 +1,56 @@
+{
+  "name": "react-quiz",
+  "version": "0.1.0",
+  "private": true,
+  "config": {
+    "env": {
+      "port": "3001"
+    },
+    "server": {
+      "port": "9001"
+    }
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "cross-env": "^7.0.3",
+    "json-server": "^1.0.0-alpha.23",
+    "kill-port": "^2.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "REACT_APP_SERVER_PORT=\"$npm_package_config_server_port\" REACT_APP_ENV_PORT=\"$npm_package_config_env_port\" cross-env PORT=$npm_package_config_env_port react-scripts start",
+    "dev:start": "concurrently --kill-others \"npm run start\" \"npm run server:start\"",
+    "dev:stop": "kill-port $npm_package_config_env_port $npm_package_config_server_port",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "server:start": "json-server src/data/data.json --port $npm_package_config_server_port",
+    "server:stop": "kill-port $npm_package_config_server_port"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
